@@ -1,9 +1,4 @@
-// src/nodes/core/nodeThemes.js
-/**
- * Centralized styling system for nodes
- * Icons and metadata only - styling handled by CSS variables in baseNode.css
- */
-
+// region node themes
 export const NODE_THEMES = {
   INPUT: {
     icon: '📥',
@@ -18,7 +13,7 @@ export const NODE_THEMES = {
     accentColor: '#5e35b1',
   },
   TEXT: {
-    icon: '�',
+    icon: '📝',
     accentColor: '#5e35b1',
   },
   PROCESS: {
@@ -26,7 +21,7 @@ export const NODE_THEMES = {
     accentColor: '#5e35b1',
   },
   UTILITY: {
-    icon: '�',
+    icon: '🔧',
     accentColor: '#5e35b1',
   },
   AI: {
@@ -37,14 +32,23 @@ export const NODE_THEMES = {
     icon: '💾',
     accentColor: '#5e35b1',
   },
+  PDF: {
+    icon: '📄',
+    accentColor: '#5e35b1',
+  },
+  KNOWLEDGE: {
+    icon: '📚',
+    accentColor: '#5e35b1',
+  },
 };
+// endregion
 
 // applyTheme now only returns base dimensions, not colors
 // All colors are handled by CSS variables in baseNode.css
 export const applyTheme = (theme, baseStyles = {}) => ({
   ...baseStyles,
-  // Only include non-color styles here
-  // backgroundColor, borderColor, border, borderRadius, boxShadow are all in CSS now
 });
 
+// region exports
 export const getThemeIcon = (themeName) => NODE_THEMES[themeName]?.icon || '📦';
+// endregion

@@ -1,19 +1,16 @@
-// src/nodes/webSearchNode.js
-/**
- * Web Search Node
- * Performs web searches and returns ranked results
- * Supports multiple search engines and filtering
- * Theme: AI/Process
- */
-
+// region imports
+// components
 import { createNode, HANDLE_PRESETS } from '../components/node/baseNode';
 import {
   SelectControl,
   CheckboxControl,
   SliderControl,
 } from '../components/node/controlComponents';
+// utils
 import { NODE_THEMES, applyTheme } from '../utils/nodeThemes';
+// endregion
 
+// config
 const config = {
   title: 'Web Search',
   description: 'Search the web for information',
@@ -26,12 +23,14 @@ const config = {
   icon: NODE_THEMES.AI.icon,
 };
 
+// region render content
 const renderContent = ({ id, data, onDataChange }) => {
   const engine = data.engine || 'google';
   const resultCount = data.resultCount ?? 10;
   const includeSnippets = data.includeSnippets ?? true;
   const safeSearch = data.safeSearch ?? true;
 
+  // region UI
   return (
     <>
       <SelectControl
@@ -65,6 +64,10 @@ const renderContent = ({ id, data, onDataChange }) => {
       />
     </>
   );
+  // endregion
 };
+// endregion
 
+// region exports
 export const WebSearchNode = createNode(config, renderContent);
+// endregion

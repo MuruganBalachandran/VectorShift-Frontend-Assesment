@@ -1,18 +1,15 @@
-// src/nodes/textNode.jsx
-/**
- * Text Node
- * Text content and template processing with dynamic variables
- * Features:
- * - Auto-resize based on text content
- * - Dynamic handles for variables ({{varName}})
- * Theme: Text (Orange)
- */
-
+// region imports
+// hooks
 import { useState, useMemo, useRef, useEffect } from 'react';
+// reactflow
 import { Handle, Position } from 'reactflow';
+// utils
 import { NODE_THEMES } from '../utils/nodeThemes';
+// styles
 import '../styles/baseNode.css';
+// endregion
 
+// region helpers
 /**
  * Extract variables from text in format {{varName}}
  * Valid variable names: alphanumeric, underscore, camelCase
@@ -42,7 +39,9 @@ const calculateHeight = (text, containerWidth) => {
   const contentHeight = Math.max((lines - 1) * 15, 0);
   return Math.max(baseHeight, baseHeight + contentHeight);
 };
+// endregion
 
+// region component
 export const TextNode = ({ id, data = {} }) => {
   const [text, setText] = useState(data.text || '{{input}}');
   const [width, setWidth] = useState(180);
@@ -68,6 +67,7 @@ export const TextNode = ({ id, data = {} }) => {
 
   const theme = NODE_THEMES.TEXT;
 
+  // region UI
   return (
     <div
       ref={containerRef}
@@ -129,4 +129,6 @@ export const TextNode = ({ id, data = {} }) => {
       ))}
     </div>
   );
+  // endregion
 };
+// endregion

@@ -1,12 +1,10 @@
-// PipelineResultsModal.jsx
-/**
- * Pipeline Validation Results Modal
- * Displays the analysis of the pipeline (nodes, edges, DAG status)
- */
-
+// region imports
 import React from 'react';
+// styles
 import '../styles/PipelineResultsModal.css';
+// enderegion
 
+// region result modal
 export const PipelineResultsModal = ({ isOpen, data, onClose, error }) => {
   if (!isOpen) return null;
 
@@ -66,21 +64,6 @@ export const PipelineResultsModal = ({ isOpen, data, onClose, error }) => {
                   {data.is_dag ? 'Valid' : 'Invalid'}
                 </div>
               </div>
-
-              {/* Pipeline Status */}
-              <div className={`modal-validation-card ${data.is_dag ? 'info-valid' : 'info-invalid'}`}>
-                <div className="modal-validation-header">
-                  <span className="modal-validation-icon">
-                    {data.is_dag ? '✓' : '⚠️'}
-                  </span>
-                  <span className={`modal-validation-title ${data.is_dag ? 'info-valid' : 'info-invalid'}`}>
-                    Pipeline
-                  </span>
-                </div>
-                <div className={`modal-validation-status ${data.is_dag ? 'info-valid' : 'info-invalid'}`}>
-                  {data.is_dag ? 'Valid' : 'Invalid'}
-                </div>
-              </div>
             </div>
 
             {/* Message Section */}
@@ -119,3 +102,4 @@ export const PipelineResultsModal = ({ isOpen, data, onClose, error }) => {
     </div>
   );
 };
+// endregion

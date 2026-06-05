@@ -1,9 +1,10 @@
 /* App.css - Main application layout */
 
+/* Main container for the entire application */
 .app-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh; /* Full viewport height */
   margin: 0;
   padding: 0;
 }

@@ -1,8 +1,14 @@
 
+// region imports
+// packages
 import { Handle, Position } from 'reactflow';
+// hooks
 import { useState, useCallback, useMemo } from 'react';
+// styles
 import '../../styles/baseNode.css';
+// endregion
 
+// region create Node
 export const createNode = (config, renderContent) => {
   const {
     title,
@@ -64,10 +70,9 @@ export const createNode = (config, renderContent) => {
     );
   };
 };
+// endregion
 
-/**
- * Utility: Create handle configuration
- */
+// Utility: Create handle configuration
 export const createHandle = (
   id,
   type = 'source',
@@ -82,9 +87,7 @@ export const createHandle = (
   style,
 });
 
-/**
- * Utility: Common handle configurations
- */
+// Utility: Common handle configurations
 export const HANDLE_PRESETS = {
   SINGLE_INPUT: [createHandle('input', 'target', 'left')],
   SINGLE_OUTPUT: [createHandle('output', 'source', 'right')],
@@ -102,3 +105,4 @@ export const HANDLE_PRESETS = {
     createHandle('input3', 'target', 'left', '', { top: '75%' }),
   ],
 };
+

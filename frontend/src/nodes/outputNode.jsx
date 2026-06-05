@@ -1,14 +1,12 @@
-// src/nodes/outputNode.jsx
-/**
- * Output Node
- * Defines outputs for the pipeline
- * Theme: Output (Green)
- */
-
+// region imports
+// components
 import { createNode, HANDLE_PRESETS } from '../components/node/baseNode';
 import { TextInput, SelectControl } from '../components/node/controlComponents';
+// utils
 import { NODE_THEMES, applyTheme } from '../utils/nodeThemes';
+// endregion
 
+// config
 const config = {
   title: 'Output',
   description: 'Pipeline output',
@@ -19,10 +17,12 @@ const config = {
   icon: NODE_THEMES.OUTPUT.icon,
 };
 
+// region render content
 const renderContent = ({ id, data, onDataChange }) => {
   const name = data.outputName || id.replace('customOutput-', 'output_');
   const outputType = data.outputType || 'Text';
 
+  // region UI
   return (
     <>
       <TextInput
@@ -42,6 +42,10 @@ const renderContent = ({ id, data, onDataChange }) => {
       />
     </>
   );
+  // endregion
 };
+// endregion
 
+// region exports
 export const OutputNode = createNode(config, renderContent);
+// endregion

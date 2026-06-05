@@ -1,15 +1,19 @@
+/* index.css - Global styles and typography */
+
+/* Global body styles with theme support */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased; /* Better font rendering on macOS */
+  -moz-osx-font-smoothing: grayscale; /* Better font rendering on macOS */
+  background-color: var(--bg-primary); /* Theme-aware background */
+  color: var(--text-primary); /* Theme-aware text color */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transitions */
 }
 
+/* Monospace font for code elements */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

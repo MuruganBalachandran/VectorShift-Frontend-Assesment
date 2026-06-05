@@ -4,12 +4,14 @@
  * Provides consistent UI patterns across all node types
  */
 
+// region imports
+// hooks
 import { useState } from 'react';
+// styles
 import '../../styles/controlComponents.css';
+// endregion
 
-/**
- * Text Input Control
- */
+// region Text Input Control
 export const TextInput = ({
   label,
   value,
@@ -28,10 +30,9 @@ export const TextInput = ({
     />
   </div>
 );
+// endregion
 
-/**
- * Select/Dropdown Control
- */
+// region Select/Dropdown Control
 export const SelectControl = ({
   label,
   value,
@@ -53,10 +54,9 @@ export const SelectControl = ({
     </select>
   </div>
 );
+// endregion
 
-/**
- * Textarea Control
- */
+// region Textarea Control
 export const TextareaControl = ({
   label,
   value,
@@ -75,10 +75,9 @@ export const TextareaControl = ({
     />
   </div>
 );
+// endregion
 
-/**
- * Checkbox Control
- */
+// region Checkbox Control
 export const CheckboxControl = ({
   label,
   value,
@@ -96,9 +95,7 @@ export const CheckboxControl = ({
   </div>
 );
 
-/**
- * Toggle Control
- */
+// region Toggle Control
 export const ToggleControl = ({
   label,
   value,
@@ -114,10 +111,9 @@ export const ToggleControl = ({
     </button>
   </div>
 );
+// endregion
 
-/**
- * Multi-Select Control
- */
+// region Multi-Select Control
 export const MultiSelectControl = ({
   label,
   value = [],
@@ -166,9 +162,7 @@ export const ColorPickerControl = ({
   </div>
 );
 
-/**
- * Slider Control
- */
+// region Slider Control
 export const SliderControl = ({
   label,
   value,
@@ -193,10 +187,9 @@ export const SliderControl = ({
     />
   </div>
 );
+// endregion
 
-/**
- * Tag Input Control
- */
+// region Tag Input Control
 export const TagInputControl = ({
   label,
   value = [],
@@ -243,3 +236,4 @@ export const TagInputControl = ({
     </div>
   );
 };
+// endregion

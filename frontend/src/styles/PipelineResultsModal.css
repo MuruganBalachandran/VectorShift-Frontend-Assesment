@@ -1,40 +1,45 @@
-/* PipelineResultsModal.css - Modal dialog styles */
+/* PipelineResultsModal.css - Modal dialog for displaying pipeline submission results */
 
+/*  Modal Container  */
+/* Full-screen backdrop overlay */
 .modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--modal-backdrop);
+  background-color: var(--modal-backdrop); /* Semi-transparent overlay */
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1000; /* Ensure modal appears above all content */
 }
 
+/* Modal content container */
 .modal-container {
   background-color: var(--modal-bg);
   border-radius: 12px;
   padding: 32px;
   width: 90%;
   max-width: 600px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  animation: slideIn 0.3s ease-out;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Prominent shadow for depth */
+  animation: slideIn 0.3s ease-out; /* Smooth entrance animation */
 }
 
+/* Slide-in animation for modal appearance */
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-20px); /* Start slightly above */
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0); /* End at natural position */
   }
 }
 
-/* Header */
+/*  Header Section  */
+/* Modal header with title and close button */
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -42,13 +47,15 @@
   margin-bottom: 24px;
 }
 
+/* Modal title text */
 .modal-title {
   margin: 0;
   font-size: 24px;
   font-weight: bold;
-  color: var(--accent-primary);
+  color: var(--accent-primary); 
 }
 
+/* Close button (X) */
 .modal-close-button {
   background: none;
   border: none;
@@ -63,7 +70,8 @@
   justify-content: center;
 }
 
-/* Error State */
+/*  Error State  */
+/* Error message container */
 .modal-error {
   background-color: var(--warning-bg);
   border: 1px solid var(--warning-border);
@@ -72,24 +80,28 @@
   color: var(--warning-text);
 }
 
+/* Error title */
 .modal-error-title {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 8px;
 }
 
+/* Error message text */
 .modal-error-message {
   font-size: 14px;
 }
 
-/* Stats Grid */
+/*  Stats Grid  */
+/* Grid layout for pipeline statistics */
 .modal-stats-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
   gap: 16px;
   margin-bottom: 24px;
 }
 
+/* Individual stat card */
 .modal-stat-card {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-primary);
@@ -98,6 +110,7 @@
   text-align: center;
 }
 
+/* Stat label with icon */
 .modal-stat-label {
   font-size: 12px;
   color: var(--text-secondary);
@@ -106,48 +119,56 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 6px; 
 }
 
+/* Large stat value number */
 .modal-stat-value {
   font-size: 40px;
   font-weight: bold;
   color: var(--accent-primary);
 }
 
-/* Validation Grid */
+/*  Validation Grid  */
+/* Grid layout for validation results */
 .modal-validation-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr; /* Single column layout */
   gap: 16px;
   margin-bottom: 24px;
 }
 
+/* Individual validation card */
 .modal-validation-card {
   border-radius: 8px;
   padding: 16px;
 }
 
+/* Validation card - Valid state (green) */
 .modal-validation-card.valid {
   background-color: var(--success-bg);
   border: 2px solid var(--success-border);
 }
 
+/* Validation card - Invalid state (red) */
 .modal-validation-card.invalid {
   background-color: var(--error-bg);
   border: 2px solid var(--error-border);
 }
 
+/* Validation card - Info valid state (blue) */
 .modal-validation-card.info-valid {
   background-color: var(--info-bg);
   border: 2px solid var(--info-border);
 }
 
+/* Validation card - Info invalid state (yellow) */
 .modal-validation-card.info-invalid {
   background-color: var(--warning-bg);
   border: 2px solid var(--warning-border);
 }
 
+/* Validation card header with icon */
 .modal-validation-header {
   display: flex;
   align-items: center;
@@ -155,15 +176,18 @@
   margin-bottom: 4px;
 }
 
+/* Validation icon (checkmark or X) */
 .modal-validation-icon {
   font-size: 20px;
 }
 
+/* Validation title text */
 .modal-validation-title {
   font-size: 14px;
   font-weight: bold;
 }
 
+/* Title color variants for different states */
 .modal-validation-title.valid {
   color: var(--success-text);
 }
@@ -180,11 +204,13 @@
   color: var(--warning-text);
 }
 
+/* Validation status text */
 .modal-validation-status {
   font-size: 12px;
   font-weight: 600;
 }
 
+/* Status color variants for different states */
 .modal-validation-status.valid {
   color: var(--success-text);
 }
@@ -201,55 +227,65 @@
   color: var(--warning-text);
 }
 
-/* Message Section */
+/*  Message Section  */
+/* General message container */
 .modal-message {
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 24px;
 }
 
+/* Success message styling */
 .modal-message.success {
   background-color: var(--success-bg);
   border: 1px solid var(--success-border);
 }
 
+/* Warning message styling */
 .modal-message.warning {
   background-color: var(--warning-bg);
   border: 1px solid var(--warning-border);
 }
 
+/* Message content with icon */
 .modal-message-content {
   font-size: 14px;
   font-weight: 600;
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 12px; /* Space between icon and text */
 }
 
+/* Success message text color */
 .modal-message-content.success {
   color: var(--success-text);
 }
 
+/* Warning message text color */
 .modal-message-content.warning {
   color: var(--warning-text);
 }
 
+/* Message icon */
 .modal-message-icon {
   font-size: 18px;
-  margin-top: -2px;
+  margin-top: -2px; /* Align with text baseline */
 }
 
+/* Message title */
 .modal-message-text-title {
   font-weight: bold;
 }
 
+/* Message description/details */
 .modal-message-text-description {
   font-size: 12px;
   margin-top: 4px;
   font-weight: 400;
 }
 
-/* Close Button */
+/*  Close Button  */
+/* Full-width close button at bottom */
 .modal-button-close {
   width: 100%;
   padding: 12px 20px;
@@ -260,9 +296,10 @@
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s; /* Smooth hover transition */
 }
 
+/* Hover state for close button */
 .modal-button-close:hover {
   background-color: var(--accent-hover);
 }

@@ -1,14 +1,12 @@
-// src/nodes/llmNode.jsx
-/**
- * LLM Node
- * Large Language Model processing with model selection
- * Theme: LLM (Purple)
- */
-
+// region imports
+// components
 import { createNode, HANDLE_PRESETS } from '../components/node/baseNode';
 import { SelectControl } from '../components/node/controlComponents';
+// utils
 import { NODE_THEMES, applyTheme } from '../utils/nodeThemes';
+// endregion
 
+// config
 const config = {
   title: 'LLM',
   description: 'Large Language Model',
@@ -22,9 +20,11 @@ const config = {
   icon: NODE_THEMES.LLM.icon,
 };
 
+// region render content
 const renderContent = ({ id, data, onDataChange }) => {
   const model = data.model || 'GPT-4';
 
+  // region UI
   return (
     <>
       <SelectControl
@@ -45,6 +45,10 @@ const renderContent = ({ id, data, onDataChange }) => {
       </div>
     </>
   );
+  // endregion
 };
+// endregion
 
+// region exports
 export const LLMNode = createNode(config, renderContent);
+// endregion

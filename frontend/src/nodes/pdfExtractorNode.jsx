@@ -1,18 +1,16 @@
-// src/nodes/pdfExtractorNode.js
-/**
- * PDF Extractor Node
- * Extracts text, metadata, and images from PDF files
- * Theme: Data Processing (Gray/Blue)
- */
-
+// region imports
+// components
 import { createNode, HANDLE_PRESETS } from '../components/node/baseNode';
 import {
   TextInput,
   SelectControl,
   CheckboxControl,
 } from '../components/node/controlComponents';
+// utils
 import { NODE_THEMES, applyTheme } from '../utils/nodeThemes';
+// endregion
 
+// config
 const config = {
   title: 'PDF Extractor',
   description: 'Extract text, metadata, and images from PDFs',
@@ -21,16 +19,18 @@ const config = {
   handles: [
     ...HANDLE_PRESETS.SINGLE_OUTPUT,
   ],
-  styles: applyTheme(NODE_THEMES.DATA),
-  icon: NODE_THEMES.DATA.icon,
+  styles: applyTheme(NODE_THEMES.PDF),
+  icon: NODE_THEMES.PDF.icon,
 };
 
+// region render content
 const renderContent = ({ id, data, onDataChange }) => {
   const mode = data.extractionMode || 'text';
   const pages = data.pages || 'all';
   const includeImages = data.includeImages ?? true;
   const includeMetadata = data.includeMetadata ?? true;
 
+  // region UI
   return (
     <>
       <SelectControl
@@ -61,6 +61,10 @@ const renderContent = ({ id, data, onDataChange }) => {
       />
     </>
   );
+  // endregion
 };
+// endregion
 
+// region exports
 export const PDFExtractorNode = createNode(config, renderContent);
+// endregion

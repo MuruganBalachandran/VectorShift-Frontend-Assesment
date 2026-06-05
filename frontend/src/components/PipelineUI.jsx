@@ -1,11 +1,11 @@
-// PipelineUI.jsx
-// Displays the drag-and-drop UI
-// --------------------------------------------------
-
+// region imports
+// hooks
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
+// store
 import { useStore } from '../store/store';
 import { shallow } from 'zustand/shallow';
+// nodes
 import { InputNode } from '../nodes/inputNode';
 import { LLMNode } from '../nodes/llmNode';
 import { OutputNode } from '../nodes/outputNode';
@@ -15,10 +15,11 @@ import { KnowledgeBaseNode } from '../nodes/knowledgeBaseNode';
 import { WebSearchNode } from '../nodes/webSearchNode';
 import { PromptTemplateNode } from '../nodes/promptTemplateNode';
 import { EmailGeneratorNode } from '../nodes/emailGeneratorNode';
-
+// styles
 import 'reactflow/dist/style.css';
 import '../styles/PipelineUI.css';
 
+// region constants
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
 const nodeTypes = {
@@ -33,6 +34,20 @@ const nodeTypes = {
   emailGenerator: EmailGeneratorNode,
 };
 
+
+// Icon mapping for each node type
+const NODE_ICONS = {
+  customInput: '📥',
+  customOutput: '📤',
+  llm: '💬',
+  text: '📝',
+  pdfExtractor: '📄',
+  knowledgeBase: '💾',
+  webSearch: '🔍',
+  promptTemplate: '🤖',
+  emailGenerator: '✉️',
+};
+
 const selector = (state) => ({
   nodes: state.nodes,
   edges: state.edges,
@@ -45,7 +60,60 @@ const selector = (state) => ({
   deleteNode: state.deleteNode,
   deleteEdge: state.deleteEdge,
 });
+// endregion
 
+
+// region Custom MiniMap node component with icons
+const MiniMapNodeWithIcon = ({ x, y, width, height, color, shapeRendering, style, onClick }) => {
+  // Get node type from the color to determine which icon to show
+  const getIconFromColor = (col) => {
+    const colorIconMap = {
+      '#4CAF50': '📥',
+      '#F44336': '📤',
+      '#2196F3': '💬',
+      '#FF9800': '📝',
+      '#9C27B0': '📄',
+      '#795548': '💾',
+      '#00BCD4': '🔍',
+      '#E91E63': '🤖',
+      '#607D8B': '✉️',
+    };
+    return colorIconMap[col] || '';
+  };
+
+  const icon = getIconFromColor(color);
+
+  return (
+    <g onClick={onClick}>
+      <rect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        fill="transparent"
+        stroke={color}
+        strokeWidth="2"
+        rx="3"
+        shapeRendering={shapeRendering}
+      />
+      {icon && (
+        <text
+          x={x + width / 2}
+          y={y + height / 2 + 1}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize={Math.min(width, height) * 0.8}
+          style={{ userSelect: 'none', pointerEvents: 'none' }}
+        >
+          {icon}
+        </text>
+      )}
+    </g>
+  );
+};
+// endregion
+
+// region pipeline UI
 export const PipelineUI = () => {
     const reactFlowWrapper = useRef(null);
     const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -149,10 +217,27 @@ export const PipelineUI = () => {
                     showInteractive={true}
                 />
                 <MiniMap 
-                    nodeColor={() => '#5e35b1'}
+                    nodeColor={(node) => {
+                      // Color nodes based on their type for better visual distinction
+                      const typeColorMap = {
+                        customInput: '#4CAF50',      // Green for inputs
+                        customOutput: '#F44336',     // Red for outputs
+                        llm: '#2196F3',              // Blue for LLM
+                        text: '#FF9800',             // Orange for text
+                        pdfExtractor: '#9C27B0',     // Purple for PDF
+                        knowledgeBase: '#795548',    // Brown for knowledge base
+                        webSearch: '#00BCD4',        // Cyan for web search
+                        promptTemplate: '#E91E63',   // Pink for prompt template
+                        emailGenerator: '#607D8B',   // Blue grey for email
+                      };
+                      return typeColorMap[node.type] || '#5e35b1';
+                    }}
+                    nodeStrokeWidth={3}
+                    nodeComponent={MiniMapNodeWithIcon}
                     maskColor="rgba(0, 0, 0, 0.05)"
                 />
             </ReactFlow>
         </div>
     )
 }
+// endregion

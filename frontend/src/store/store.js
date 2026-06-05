@@ -1,5 +1,5 @@
-// store.js
-
+// region imports
+// packages 
 import { create } from "zustand";
 import {
     addEdge,
@@ -7,14 +7,18 @@ import {
     applyEdgeChanges,
     MarkerType,
   } from 'reactflow';
+// endregion
 
 export const useStore = create((set, get) => ({
     nodes: [],
     edges: [],
-    history: [{ nodes: [], edges: [] }], // Initialize with empty state
-    historyStep: 0, // Start at position 0
+     // Initialize with empty state
+    history: [{ nodes: [], edges: [] }],
+    // Start at position 0
+    historyStep: 0, 
     nodeIDs: {},
     
+    //region get node id
     getNodeID: (type) => {
         const newIDs = {...get().nodeIDs};
         if (newIDs[type] === undefined) {
@@ -24,7 +28,9 @@ export const useStore = create((set, get) => ({
         set({nodeIDs: newIDs});
         return `${type}-${newIDs[type]}`;
     },
-    
+    // endregion
+
+    // add node
     addNode: (node) => {
         const newNodes = [...get().nodes, node];
         const newHistory = get().history.slice(0, get().historyStep + 1);
@@ -35,7 +41,9 @@ export const useStore = create((set, get) => ({
             historyStep: newHistory.length - 1,
         });
     },
+    // endregion
     
+    // region onChange of node
     onNodesChange: (changes) => {
       // Filter out changes that shouldn't create history entries
       const shouldCreateHistory = changes.some(change => 
@@ -60,8 +68,9 @@ export const useStore = create((set, get) => ({
         set({ nodes: newNodes });
       }
     },
+    // endregion
     
-    // Called when node drag ends - creates history entry for position change
+    // region node drag ends - creates history entry for position change
     onNodeDragStop: () => {
       const newHistory = get().history.slice(0, get().historyStep + 1);
       newHistory.push({ nodes: get().nodes, edges: get().edges });
@@ -70,7 +79,9 @@ export const useStore = create((set, get) => ({
         historyStep: newHistory.length - 1,
       });
     },
+    // endregion
     
+    // region edge onChnage
     onEdgesChange: (changes) => {
       // Filter out changes that shouldn't create history entries
       const shouldCreateHistory = changes.some(change => 
@@ -95,7 +106,9 @@ export const useStore = create((set, get) => ({
         set({ edges: newEdges });
       }
     },
+    // endregion
     
+    // region connect
     onConnect: (connection) => {
       const newEdges = addEdge({
         ...connection, 
@@ -112,7 +125,9 @@ export const useStore = create((set, get) => ({
         historyStep: newHistory.length - 1,
       });
     },
+    // endregion
     
+    // region update node field
     updateNodeField: (nodeId, fieldName, fieldValue) => {
       const newNodes = get().nodes.map((node) => {
         if (node.id === nodeId) {
@@ -128,7 +143,10 @@ export const useStore = create((set, get) => ({
         historyStep: newHistory.length - 1,
       });
     },
+    // endregion
     
+
+    // region delete node
     deleteNode: (nodeId) => {
       const newNodes = get().nodes.filter((node) => node.id !== nodeId);
       const newEdges = get().edges.filter((edge) => edge.source !== nodeId && edge.target !== nodeId);
@@ -141,7 +159,9 @@ export const useStore = create((set, get) => ({
         historyStep: newHistory.length - 1,
       });
     },
+    // endregion
     
+    // region delete edge
     deleteEdge: (edgeId) => {
       const newEdges = get().edges.filter((edge) => edge.id !== edgeId);
       const newHistory = get().history.slice(0, get().historyStep + 1);
@@ -152,7 +172,9 @@ export const useStore = create((set, get) => ({
         historyStep: newHistory.length - 1,
       });
     },
+    // endregion
     
+    // region clear canvas
     clearAll: () => {
       const newHistory = get().history.slice(0, get().historyStep + 1);
       newHistory.push({ nodes: [], edges: [] });
@@ -163,7 +185,9 @@ export const useStore = create((set, get) => ({
         historyStep: newHistory.length - 1,
       });
     },
+    // endregion
     
+    // region undo
     undo: () => {
       if (get().historyStep > 0) {
         const prevStep = get().historyStep - 1;
@@ -175,7 +199,9 @@ export const useStore = create((set, get) => ({
         });
       }
     },
+    // endregion
     
+    // region redo
     redo: () => {
       if (get().historyStep < get().history.length - 1) {
         const nextStep = get().historyStep + 1;
@@ -187,4 +213,5 @@ export const useStore = create((set, get) => ({
         });
       }
     },
+    // endregion
   }));

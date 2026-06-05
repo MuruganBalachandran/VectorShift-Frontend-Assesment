@@ -1,6 +1,9 @@
 // DraggableNode.jsx
+// region imports
 import '../styles/DraggableNode.css';
+// endregion
 
+// region draggable node
 export const DraggableNode = ({ type, label, icon }) => {
     const onDragStart = (event, nodeType) => {
       const appData = { nodeType }
@@ -21,3 +24,4 @@ export const DraggableNode = ({ type, label, icon }) => {
       </div>
     );
   };
+  // endregion

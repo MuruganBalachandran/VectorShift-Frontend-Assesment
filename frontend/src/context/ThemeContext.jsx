@@ -1,8 +1,11 @@
-// ThemeContext.jsx
+//region imports
 import React, { createContext, useContext, useState, useEffect } from 'react';
+// endregion
 
+// create context
 const ThemeContext = createContext();
 
+// region  use theme functionality
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
@@ -10,7 +13,9 @@ export const useTheme = () => {
   }
   return context;
 };
+// endregion
 
+// region provider
 export const ThemeProvider = ({ children }) => {
   // Check localStorage for saved theme preference, default to 'light'
   const [theme, setTheme] = useState(() => {
@@ -34,3 +39,5 @@ export const ThemeProvider = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
+
+// endregion

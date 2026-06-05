@@ -1,17 +1,15 @@
-// src/nodes/promptTemplateNode.js
-/**
- * Prompt Template Node
- * Manages reusable AI prompts with variable substitution
- * Theme: AI/Utility
- */
-
+// region imports
+// components
 import { createNode, HANDLE_PRESETS } from '../components/node/baseNode';
 import {
   TextareaControl,
   TagInputControl,
 } from '../components/node/controlComponents';
+// utils
 import { NODE_THEMES, applyTheme } from '../utils/nodeThemes';
+// endregion
 
+// config
 const config = {
   title: 'Prompt Template',
   description: 'AI prompt with variables',
@@ -24,10 +22,12 @@ const config = {
   icon: NODE_THEMES.AI.icon,
 };
 
+// region render content
 const renderContent = ({ id, data, onDataChange }) => {
   const template = data.template || 'Please respond to: {{query}}';
   const variables = data.variables || ['query'];
 
+  // region UI
   return (
     <>
       <TextareaControl
@@ -45,6 +45,10 @@ const renderContent = ({ id, data, onDataChange }) => {
       />
     </>
   );
+  // endregion
 };
+// endregion
 
+// region exports
 export const PromptTemplateNode = createNode(config, renderContent);
+// endregion

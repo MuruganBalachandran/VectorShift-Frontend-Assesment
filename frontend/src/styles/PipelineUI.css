@@ -1,23 +1,67 @@
-/* PipelineUI.css - ReactFlow canvas styles */
+/* PipelineUI.css - ReactFlow canvas and related component styles */
 
+/* ===== Main Canvas ===== */
+/* Main wrapper for the ReactFlow canvas */
 .pipeline-wrapper {
   width: 100%;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 70px); /* Full height minus toolbar */
 }
 
-/* ReactFlow Controls - Bottom Left */
+/* ===== ReactFlow Controls ===== */
+/* Zoom and fit controls positioned at bottom left */
 .react-flow__controls {
   bottom: 20px !important;
   left: 20px !important;
 }
 
-/* ReactFlow MiniMap - Bottom Right */
+/* ===== ReactFlow MiniMap ===== */
+/* Mini overview map positioned at bottom right */
 .react-flow__minimap {
   bottom: 20px !important;
   right: 20px !important;
   width: 200px !important;
   height: 150px !important;
-  background-color: var(--bg-secondary) !important;
-  border: 1px solid var(--border-primary) !important;
+  background-color: var(--bg-secondary) !important; /* Theme-aware background */
+  border: 1px solid var(--border-primary) !important; /* Theme-aware border */
   border-radius: 8px !important;
+}
+
+/* ===== ReactFlow Edges ===== */
+/* Connection lines between nodes */
+.react-flow__edge-path {
+  stroke: var(--edge-color) !important; /* Theme-aware edge color */
+  stroke-width: 2;
+}
+
+/* Selected edge highlighting */
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--edge-color-selected) !important; /* Accent color when selected */
+  stroke-width: 2;
+}
+
+/* Connection line shown while dragging */
+.react-flow__connectionline {
+  stroke: var(--edge-color) !important;
+}
+
+/* Text label wrapper on edges */
+.react-flow__edge-textwrapper {
+  background-color: var(--bg-primary) !important; /* Theme-aware background */
+}
+
+/* Text displayed on edges */
+.react-flow__edge-text {
+  fill: var(--text-primary) !important; /* Theme-aware text color */
+}
+
+/* ===== MiniMap Labels ===== */
+/* Icon labels displayed in the minimap */
+.minimap-icon-label {
+  position: absolute;
+  font-size: 10px;
+  pointer-events: none; /* Don't interfere with minimap interactions */
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

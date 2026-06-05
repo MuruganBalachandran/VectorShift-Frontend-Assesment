@@ -1,20 +1,22 @@
-/* controlComponents.css - Form control components styles */
+/* controlComponents.css - Form control components for node configuration */
 
-/* Base Control Wrapper */
+/*  Base Control Wrapper  */
 .control-wrapper {
-  margin-bottom: 8px;
+  margin-bottom: 8px; /* Space between controls */
 }
 
-/* Labels */
+/*  Labels  */
+/* Label for all form controls */
 .control-label {
   display: block;
   margin-bottom: 4px;
   font-size: 11px;
-  color: var(--text-secondary);
+  color: var(--text-secondary); /* Secondary color for hierarchy */
   font-weight: 500;
 }
 
-/* Text Input */
+/*  Text Input  */
+/* Standard text input field */
 .control-input {
   width: 100%;
   padding: 6px 8px;
@@ -25,14 +27,16 @@
   box-sizing: border-box;
   font-size: 12px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s; /* Smooth focus transition */
 }
 
+/* Focus state for text input */
 .control-input:focus {
-  border-color: var(--input-focus);
+  border-color: var(--input-focus); 
 }
 
-/* Select/Dropdown */
+/*  Select/Dropdown  */
+/* Dropdown select control */
 .control-select {
   width: 100%;
   padding: 6px 8px;
@@ -43,10 +47,11 @@
   box-sizing: border-box;
   font-size: 12px;
   outline: none;
-  cursor: pointer;
+  cursor: pointer; /* Indicate interactivity */
 }
 
-/* Textarea */
+/*  Textarea  */
+/* Multi-line text input */
 .control-textarea {
   width: 100%;
   padding: 6px 8px;
@@ -56,36 +61,41 @@
   color: var(--text-primary);
   box-sizing: border-box;
   font-size: 11px;
-  font-family: monospace;
+  font-family: monospace; /* Monospace for code/template input */
   outline: none;
-  resize: vertical;
+  resize: vertical; /* Allow vertical resizing only */
   transition: border-color 0.2s;
 }
 
+/* Focus state for textarea */
 .control-textarea:focus {
   border-color: var(--input-focus);
 }
 
-/* Checkbox */
+/*  Checkbox  */
+/* Checkbox wrapper */
 .control-checkbox-wrapper {
   margin-bottom: 8px;
 }
 
+/* Checkbox with label */
 .control-checkbox-label {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 6px; /* Space between checkbox and label */
   font-size: 11px;
   color: var(--text-primary);
   cursor: pointer;
 }
 
+/* Checkbox input styling */
 .control-checkbox-label input[type="checkbox"] {
   cursor: pointer;
-  accent-color: var(--accent-primary);
+  accent-color: var(--accent-primary); /* Match theme accent color */
 }
 
-/* Toggle */
+/*  Toggle  */
+/* Toggle switch wrapper */
 .control-toggle-wrapper {
   margin-bottom: 8px;
   display: flex;
@@ -93,11 +103,13 @@
   align-items: center;
 }
 
+/* Toggle label */
 .control-toggle-label {
   font-size: 11px;
   color: var(--text-secondary);
 }
 
+/* Toggle button */
 .control-toggle-button {
   padding: 4px 12px;
   border-radius: 4px;
@@ -107,25 +119,30 @@
   font-size: 10px;
 }
 
+/* Toggle button - ON state */
 .control-toggle-button.on {
-  background-color: var(--success-border);
+  background-color: var(--success-border); 
 }
 
+/* Toggle button - OFF state */
 .control-toggle-button.off {
-  background-color: var(--border-secondary);
+  background-color: var(--border-secondary); 
 }
 
-/* Multi-Select */
+/*  Multi-Select  */
+/* Multi-select checkbox list wrapper */
 .control-multiselect-wrapper {
   margin-bottom: 8px;
 }
 
+/* Container for checkbox options */
 .control-multiselect-options {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 4px; /* Space between options */
 }
 
+/* Individual multi-select option */
 .control-multiselect-option {
   display: flex;
   align-items: center;
@@ -135,12 +152,14 @@
   cursor: pointer;
 }
 
+/* Multi-select checkbox styling */
 .control-multiselect-option input[type="checkbox"] {
   cursor: pointer;
   accent-color: var(--accent-primary);
 }
 
-/* Color Picker */
+/*  Color Picker  */
+/* Color input control */
 .control-color {
   width: 100%;
   height: 30px;
@@ -151,34 +170,40 @@
   background-color: var(--input-bg);
 }
 
-/* Slider */
+/*  Slider  */
+/* Slider control wrapper */
 .control-slider-wrapper {
   margin-bottom: 8px;
 }
 
+/* Slider label with value display */
 .control-slider-label {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Label on left, value on right */
   font-size: 11px;
   margin-bottom: 4px;
   color: var(--text-secondary);
 }
 
+/* Current slider value display */
 .control-slider-value {
   font-weight: bold;
   color: var(--text-primary);
 }
 
+/* Range slider input */
 .control-slider {
   width: 100%;
-  accent-color: var(--accent-primary);
+  accent-color: var(--accent-primary); 
 }
 
-/* Tag Input */
+/*  Tag Input  */
+/* Tag input wrapper for adding/removing tags */
 .control-tags-wrapper {
   margin-bottom: 8px;
 }
 
+/* Input field for adding new tags */
 .control-tags-input {
   width: 100%;
   padding: 4px;
@@ -191,23 +216,26 @@
   margin-bottom: 4px;
 }
 
+/* Container for displaying tags */
 .control-tags-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
   gap: 4px;
 }
 
+/* Individual tag badge */
 .control-tag {
   background-color: var(--bg-tertiary);
   color: var(--text-primary);
   padding: 4px 8px;
-  border-radius: 12px;
+  border-radius: 12px; /* Pill shape */
   font-size: 10px;
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
+/* Remove button for tags */
 .control-tag-remove {
   background: none;
   border: none;
@@ -217,6 +245,7 @@
   color: var(--text-secondary);
 }
 
+/* Hover state for tag remove button */
 .control-tag-remove:hover {
   color: var(--text-primary);
 }

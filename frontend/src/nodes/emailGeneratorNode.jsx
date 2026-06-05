@@ -1,11 +1,5 @@
-// src/nodes/emailGeneratorNode.js
-/**
- * Email Generator Node
- * Generates personalized emails from templates and data
- * Supports batch generation and variable mapping
- * Theme: Output/Utility
- */
-
+// region imports
+// components
 import { createNode, HANDLE_PRESETS } from '../components/node/baseNode';
 import {
   TextInput,
@@ -13,8 +7,11 @@ import {
   CheckboxControl,
   TagInputControl,
 } from '../components/node/controlComponents';
+// utils
 import { NODE_THEMES, applyTheme } from '../utils/nodeThemes';
+// endregion
 
+// config
 const config = {
   title: 'Email Generator',
   description: 'Generate personalized emails from templates',
@@ -27,6 +24,7 @@ const config = {
   icon: NODE_THEMES.OUTPUT.icon,
 };
 
+// region render content
 const renderContent = ({ id, data, onDataChange }) => {
   const emailType = data.emailType || 'marketing';
   const tone = data.tone || 'professional';
@@ -34,8 +32,10 @@ const renderContent = ({ id, data, onDataChange }) => {
   const trackingEnabled = data.trackingEnabled ?? false;
   const recipientFields = data.recipientFields || [];
 
+  // region UI
   return (
     <>
+    {/* select email type */}
       <SelectControl
         label="Email Type"
         value={emailType}
@@ -48,6 +48,8 @@ const renderContent = ({ id, data, onDataChange }) => {
           { value: 'notification', label: 'Notification' },
         ]}
       />
+
+      {/* select type */}
       <SelectControl
         label="Tone"
         value={tone}
@@ -59,6 +61,7 @@ const renderContent = ({ id, data, onDataChange }) => {
           { value: 'urgent', label: 'Urgent' },
         ]}
       />
+      {/* checkboxes */}
       <CheckboxControl
         label="Include Signature"
         value={includeSignature}
@@ -77,6 +80,10 @@ const renderContent = ({ id, data, onDataChange }) => {
       />
     </>
   );
+  // endregion
 };
+// endregion
 
+// region exports
 export const EmailGeneratorNode = createNode(config, renderContent);
+// endregion

@@ -1,17 +1,25 @@
-// Toolbar.jsx
+// region imports
+// hooks
 import { useState } from 'react';
-import { DraggableNode } from './DraggableNode';
-import { useStore } from '../store/store';
 import { useTheme } from '../context/ThemeContext';
 import { PipelineResultsModal } from './PipelineResultsModal';
+// components
+import { DraggableNode } from './DraggableNode';
+// store
+import { useStore } from '../store/store';
+// packages
 import { MdInput, MdOutput } from 'react-icons/md';
 import { BiBot } from 'react-icons/bi';
 import { AiOutlineFileText } from 'react-icons/ai';
 import { MdPictureAsPdf, MdStorage, MdSearch, MdEditNote, MdEmail } from 'react-icons/md';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
+// styles
 import '../styles/Toolbar.css';
+// endregion
 
+// region pipeline toolbar
 export const PipelineToolbar = () => {
+  // states
   const nodes = useStore((state) => state.nodes);
   const edges = useStore((state) => state.edges);
   const history = useStore((state) => state.history);
@@ -23,11 +31,11 @@ export const PipelineToolbar = () => {
   const deleteEdge = useStore((state) => state.deleteEdge);
 
   const { theme, toggleTheme } = useTheme();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const [modalError, setModalError] = useState(null);
 
+  // region handle delete
   const handleDeleteSelected = () => {
     const selectedNodes = nodes.filter(node => node.selected);
     const selectedEdges = edges.filter(edge => edge.selected);
@@ -36,6 +44,7 @@ export const PipelineToolbar = () => {
     selectedEdges.forEach(edge => deleteEdge(edge.id));
   };
 
+  // region undo and redo
   const handleUndo = () => {
     undo();
   };
@@ -43,11 +52,15 @@ export const PipelineToolbar = () => {
   const handleRedo = () => {
     redo();
   };
+  // endregion
 
+  // region handle dlet all
   const handleDeleteAllNodes = () => {
     clearAll();
   };
+  // endregion
 
+  // region submit pipeline
   const handleSubmit = async () => {
     try {
       const payload = {
@@ -78,13 +91,17 @@ export const PipelineToolbar = () => {
       setIsModalOpen(true);
     }
   };
+  // endregion
 
+  // region close modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setModalData(null);
     setModalError(null);
   };
+  // endregion
 
+  // undo, redo vars
   const canUndo = historyStep > 0;
   const canRedo = historyStep < history.length - 1;
   const hasSelected = nodes.some(n => n.selected) || edges.some(e => e.selected);
@@ -192,3 +209,4 @@ export const PipelineToolbar = () => {
     </>
   );
 };
+// endregion

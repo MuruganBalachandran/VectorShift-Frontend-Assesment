@@ -30,6 +30,9 @@
   --canvas-bg: #fafafa;
   --canvas-grid: #aaaaaa;
   
+  --edge-color: #555555;
+  --edge-color-selected: #5e35b1;
+  
   --modal-backdrop: rgba(0, 0, 0, 0.5);
   --modal-bg: #ffffff;
   
@@ -79,6 +82,9 @@
   
   --canvas-bg: #1a1a1a;
   --canvas-grid: #555555;
+  
+  --edge-color: #888888;
+  --edge-color-selected: #9c6bdb;
   
   --modal-backdrop: rgba(0, 0, 0, 0.7);
   --modal-bg: #2d2d2d;

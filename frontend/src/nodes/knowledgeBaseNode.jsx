@@ -1,19 +1,16 @@
-// src/nodes/knowledgeBaseNode.js
-/**
- * Knowledge Base Node
- * Stores and retrieves information from a structured knowledge base
- * Supports semantic search and filtering
- * Theme: Data Storage
- */
-
+// region imports
+// components
 import { createNode, HANDLE_PRESETS } from '../components/node/baseNode';
 import {
   SelectControl,
   SliderControl,
   TagInputControl,
 } from '../components/node/controlComponents';
+// utils
 import { NODE_THEMES, applyTheme } from '../utils/nodeThemes';
+// endregion
 
+// config
 const config = {
   title: 'Knowledge Base',
   description: 'Query and store structured knowledge',
@@ -22,16 +19,18 @@ const config = {
   handles: [
     ...HANDLE_PRESETS.INPUT_OUTPUT,
   ],
-  styles: applyTheme(NODE_THEMES.DATA),
-  icon: NODE_THEMES.DATA.icon,
+  styles: applyTheme(NODE_THEMES.KNOWLEDGE),
+  icon: NODE_THEMES.KNOWLEDGE.icon,
 };
 
+// region render content
 const renderContent = ({ id, data, onDataChange }) => {
   const operation = data.operation || 'query';
   const searchType = data.searchType || 'semantic';
   const threshold = data.threshold ?? 0.7;
   const tags = data.tags || [];
 
+  // region UI
   return (
     <>
       <SelectControl
@@ -74,6 +73,10 @@ const renderContent = ({ id, data, onDataChange }) => {
       />
     </>
   );
+  // endregion
 };
+// endregion
 
+// region exports
 export const KnowledgeBaseNode = createNode(config, renderContent);
+// endregion

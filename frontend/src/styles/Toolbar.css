@@ -1,40 +1,46 @@
-/* Toolbar.css - Pipeline toolbar styles */
+/* Toolbar.css - Top toolbar with node palette and controls */
 
+/* ===== Main Toolbar Container ===== */
+/* Main horizontal toolbar at the top of the application */
 .toolbar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 24px;
-  background-color: var(--bg-primary);
-  border-bottom: 1px solid var(--border-primary);
-  gap: 24px;
+  background-color: var(--bg-primary); /* Theme-aware background */
+  border-bottom: 1px solid var(--border-primary); /* Separator from canvas */
+  gap: 24px; /* Space between toolbar sections */
   min-height: 70px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease; /* Smooth theme transitions */
 }
 
-/* Logo Section */
+/* ===== Logo Section ===== */
+/* Application logo and title */
 .toolbar-logo {
   display: flex;
   flex-direction: column;
   padding: 4px 8px;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Prevent logo from shrinking */
   line-height: 1.2;
 }
 
+/* Main title text */
 .toolbar-logo-title {
   color: var(--accent-primary);
   font-weight: bold;
   font-size: 16px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.5px; /* Slight spacing for visual appeal */
 }
 
+/* Subtitle text below main title */
 .toolbar-logo-subtitle {
   color: var(--text-secondary);
   font-size: 11px;
   font-weight: 500;
 }
 
-/* Separator */
+/* ===== Visual Separator ===== */
+/* Vertical line separator between toolbar sections */
 .toolbar-separator {
   width: 1px;
   height: 50px;
@@ -42,53 +48,61 @@
   margin: 0 8px;
 }
 
-/* Node Buttons Container */
+/* ===== Node Palette ===== */
+/* Container for draggable node buttons */
 .toolbar-nodes {
   display: flex;
-  gap: 12px;
+  gap: 12px; /* Space between node buttons */
   align-items: center;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  flex-wrap: nowrap; /* Keep nodes in a single row */
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
 }
 
-/* Spacer */
+/* ===== Spacer ===== */
+/* Flexible spacer to push controls to the right */
 .toolbar-spacer {
   flex: 1;
 }
 
-/* Controls Section */
+/* ===== Control Buttons Section ===== */
+/* Container for action buttons on the right side */
 .toolbar-controls {
   display: flex;
   gap: 12px;
   align-items: center;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Prevent controls from shrinking */
 }
 
-/* Button Base Styles */
+/* ===== Button Styles ===== */
+/* Base style for icon-only buttons */
 .toolbar-button {
   padding: 8px 12px;
   border: 1px solid var(--border-tertiary);
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s; /* Smooth hover transitions */
   color: var(--text-primary);
 }
 
+/* Icon button with secondary background */
 .toolbar-button-icon {
   background-color: var(--bg-secondary);
 }
 
+/* Icon button hover state */
 .toolbar-button-icon:hover:not(:disabled) {
   background-color: var(--bg-tertiary);
 }
 
+/* Disabled icon button state */
 .toolbar-button-icon:disabled {
   cursor: not-allowed;
-  opacity: 0.5;
+  opacity: 0.5; /* Visually indicate disabled state */
 }
 
-/* Delete Selected Button */
+/* ===== Delete Button ===== */
+/* Delete selected nodes/edges button */
 .toolbar-button-delete {
   padding: 8px 12px;
   border: 1px solid var(--border-tertiary);
@@ -99,6 +113,7 @@
   transition: all 0.2s;
 }
 
+/* Delete button - disabled state */
 .toolbar-button-delete:disabled,
 .toolbar-button-delete.disabled {
   background-color: var(--bg-secondary);
@@ -107,19 +122,22 @@
   opacity: 0.5;
 }
 
+/* Delete button - enabled state (red) */
 .toolbar-button-delete:not(:disabled):not(.disabled) {
-  background-color: #ff6b6b;
+  background-color: #ff6b6b; /* Red background for destructive action */
   color: white;
 }
 
+/* Delete button hover state */
 .toolbar-button-delete:not(:disabled):not(.disabled):hover {
-  background-color: #ff5252;
+  background-color: #ff5252; /* Darker red on hover */
 }
 
-/* Submit Button */
+/* ===== Submit Button ===== */
+/* Primary action button to submit pipeline */
 .toolbar-button-submit {
   padding: 10px 20px;
-  background-color: var(--accent-primary);
+  background-color: var(--accent-primary); /* Accent color for primary action */
   color: white;
   border: none;
   border-radius: 6px;
@@ -127,14 +145,16 @@
   font-size: 14px;
   font-weight: bold;
   transition: background-color 0.2s;
-  margin-left: 12px;
+  margin-left: 12px; /* Extra space before submit button */
 }
 
+/* Submit button hover state */
 .toolbar-button-submit:hover {
-  background-color: var(--accent-hover);
+  background-color: var(--accent-hover); /* Lighter shade on hover */
 }
 
-/* Theme Toggle Button */
+/* ===== Theme Toggle Button ===== */
+/* Button to switch between light and dark themes */
 .toolbar-theme-toggle {
   padding: 8px 12px;
   background-color: var(--bg-secondary);
@@ -148,7 +168,8 @@
   justify-content: center;
 }
 
+/* Theme toggle hover state */
 .toolbar-theme-toggle:hover {
   background-color: var(--bg-tertiary);
-  border-color: var(--accent-primary);
+  border-color: var(--accent-primary); /* Highlight border on hover */
 }

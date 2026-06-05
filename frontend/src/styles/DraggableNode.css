@@ -1,7 +1,8 @@
-/* DraggableNode.css - Draggable node button styles */
+/* DraggableNode.css - Styles for draggable node buttons in the toolbar */
 
+/* Draggable node button container */
 .draggable-node {
-  cursor: grab;
+  cursor: grab; /* Show grab cursor to indicate draggability */
   min-width: 60px;
   height: 60px;
   display: flex;
@@ -11,32 +12,36 @@
   background-color: var(--node-bg);
   border: 1px solid var(--node-border);
   flex-direction: column;
-  gap: 4px;
+  gap: 4px; 
   padding: 8px;
-  transition: all 0.2s;
-  box-shadow: 0 1px 3px var(--node-shadow);
+  transition: all 0.2s; /* Smooth hover transitions */
+  box-shadow: 0 1px 3px var(--node-shadow); /* Subtle elevation */
 }
 
+/* Active dragging state */
 .draggable-node:active {
-  cursor: grabbing;
+  cursor: grabbing; /* Show grabbing cursor while dragging */
 }
 
+/* Hover state for draggable node */
 .draggable-node:hover {
-  background-color: var(--bg-hover);
-  border-color: var(--accent-primary);
+  background-color: var(--bg-hover); /* Highlight background */
+  border-color: var(--accent-primary); /* Highlight border with accent color */
 }
 
+/* Icon/emoji displayed in the draggable node */
 .draggable-node-icon {
   font-size: 20px;
   display: flex;
   align-items: center;
-  opacity: 0.8;
+  opacity: 0.8; /* Slightly transparent for visual hierarchy */
 }
 
+/* Label text below the icon */
 .draggable-node-label {
   color: var(--text-primary);
   font-size: 10px;
   font-weight: 500;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.2; /* Compact line height for multi-line labels */
 }

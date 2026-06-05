@@ -1,14 +1,12 @@
-// src/nodes/inputNode.jsx
-/**
- * Input Node
- * Defines inputs for the pipeline
- * Theme: Input (Blue)
- */
-
+// region imports
+// components
 import { createNode, HANDLE_PRESETS } from '../components/node/baseNode';
 import { TextInput, SelectControl } from '../components/node/controlComponents';
+// utils
 import { NODE_THEMES, applyTheme } from '../utils/nodeThemes';
+// endregion
 
+// config
 const config = {
   title: 'Input',
   description: 'Pipeline input',
@@ -19,10 +17,12 @@ const config = {
   icon: NODE_THEMES.INPUT.icon,
 };
 
+// region render content
 const renderContent = ({ id, data, onDataChange }) => {
   const name = data.inputName || id.replace('customInput-', 'input_');
   const inputType = data.inputType || 'Text';
 
+  // region UI
   return (
     <>
       <TextInput
@@ -42,6 +42,10 @@ const renderContent = ({ id, data, onDataChange }) => {
       />
     </>
   );
+  // endregion
 };
+// endregion
 
+// region exports
 export const InputNode = createNode(config, renderContent);
+// endregion
