@@ -1,70 +1,229 @@
-# Getting Started with Create React App
+# VectorShift Pipeline Builder - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, feature-rich visual pipeline builder for creating and managing node-based workflows with real-time validation and a beautiful light/dark theme system.
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+The VectorShift Pipeline Builder is a React-based application that allows users to create complex data processing pipelines through an intuitive drag-and-drop interface. Built with ReactFlow, it provides a canvas where users can add various types of nodes (Input, Output, LLM, Text, PDF Extractor, Knowledge Base, Web Search, Prompt Template, and Email Generator), connect them together, and validate the resulting pipeline structure.
 
-### `npm start`
+### Key Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **9 Node Types**: Input, Output, LLM, Text, PDF Extractor, Knowledge Base, Web Search, Prompt Template, and Email Generator
+- **Visual Pipeline Editor**: Drag-and-drop interface with smooth connections
+- **Dynamic Text Node**: Auto-resizing text node with variable extraction from `{{variableName}}` syntax
+- **Light/Dark Theme**: Fully implemented theme system with smooth transitions
+- **Undo/Redo**: Complete history management for all pipeline changes
+- **Real-time Validation**: DAG (Directed Acyclic Graph) detection and pipeline statistics
+- **Minimap**: Color-coded miniature overview of the entire pipeline
+- **Professional UI**: Polished design with consistent styling across all components
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Architecture
 
-### `npm test`
+### Component Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+src/
+├── components/
+│   ├── node/
+│   │   ├── baseNode.jsx           # Node abstraction with createNode factory
+│   │   └── controlComponents.jsx  # Reusable form controls (inputs, selects, sliders, etc.)
+│   ├── DraggableNode.jsx          # Draggable node buttons for toolbar
+│   ├── PipelineResultsModal.jsx   # Modal for displaying pipeline validation results
+│   ├── PipelineUI.jsx             # Main ReactFlow canvas with minimap and controls
+│   └── Toolbar.jsx                # Top toolbar with node palette and actions
+├── nodes/
+│   ├── inputNode.jsx              # Input node for pipeline entry points
+│   ├── outputNode.jsx             # Output node for pipeline results
+│   ├── llmNode.jsx                # LLM configuration node
+│   ├── textNode.jsx               # Dynamic text node with variable extraction
+│   ├── pdfExtractorNode.jsx       # PDF processing node
+│   ├── knowledgeBaseNode.jsx      # Knowledge storage and retrieval node
+│   ├── webSearchNode.jsx          # Web search integration node
+│   ├── promptTemplateNode.jsx     # AI prompt templating node
+│   └── emailGeneratorNode.jsx     # Email generation node
+├── context/
+│   └── ThemeContext.jsx           # Theme provider for light/dark mode
+├── store/
+│   └── store.js                   # Zustand store for state management
+├── styles/
+│   ├── theme.css                  # CSS variables for light/dark themes
+│   ├── baseNode.css               # Base node styling
+│   ├── controlComponents.css      # Form control styles
+│   ├── PipelineUI.css             # Canvas and ReactFlow styles
+│   ├── Toolbar.css                # Toolbar styling
+│   ├── DraggableNode.css          # Draggable node button styles
+│   ├── PipelineResultsModal.css   # Modal dialog styles
+│   ├── index.css                  # Global styles
+│   └── App.css                    # Main app layout
+├── utils/
+│   └── nodeThemes.js              # Node theme definitions with icons and colors
+├── App.jsx                        # Root application component
+└── index.js                       # Application entry point
+```
 
-### `npm run build`
+### Design Patterns
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 1. Node Abstraction
+All nodes are created using the `createNode()` factory function from `baseNode.jsx`. This abstraction provides:
+- Consistent structure across all node types
+- Reusable handle presets (SINGLE_INPUT, SINGLE_OUTPUT, INPUT_OUTPUT, DUAL_INPUT)
+- Theme-based styling
+- Centralized node configuration
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Example:**
+```javascript
+const config = {
+  title: 'Node Title',
+  description: 'Node description',
+  width: 200,
+  height: 140,
+  handles: HANDLE_PRESETS.INPUT_OUTPUT,
+  styles: applyTheme(NODE_THEMES.AI),
+  icon: NODE_THEMES.AI.icon,
+};
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+const renderContent = ({ id, data, onDataChange }) => {
+  return (/* JSX content */);
+};
 
-### `npm run eject`
+export const MyNode = createNode(config, renderContent);
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### 2. Control Components
+Reusable form controls in `controlComponents.jsx`:
+- TextInput
+- SelectControl
+- CheckboxControl
+- ToggleControl
+- MultiSelectControl
+- ColorPickerControl
+- SliderControl
+- TextareaControl
+- TagInputControl
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 3. State Management
+Uses Zustand for centralized state management with:
+- Node and edge management
+- History tracking (undo/redo)
+- Automatic state persistence
+- Action creators for all operations
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### 4. Theme System
+CSS variable-based theming with:
+- Light and dark mode support
+- Smooth transitions between themes
+- Theme-aware components
+- Context API for theme state
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Key Technologies
 
-## Learn More
+- **React 18**: Modern React with hooks
+- **ReactFlow**: Visual node-based editor
+- **Zustand**: Lightweight state management
+- **React Icons**: Icon library
+- **CSS Variables**: Dynamic theming
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## File Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Core Files
 
-### Code Splitting
+- **`App.jsx`**: Main application container
+- **`index.js`**: Application entry point with theme provider
+- **`store/store.js`**: Zustand store with history management
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Node System
 
-### Analyzing the Bundle Size
+- **`components/node/baseNode.jsx`**: Node factory function and handle presets
+- **`components/node/controlComponents.jsx`**: All reusable form controls
+- **`nodes/*.jsx`**: Individual node implementations (9 types)
+- **`utils/nodeThemes.js`**: Theme definitions for all node types
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### UI Components
 
-### Making a Progressive Web App
+- **`Toolbar.jsx`**: 
+  - Node palette with drag-and-drop
+  - Theme toggle
+  - Undo/Redo buttons
+  - Delete selected/clear all
+  - Submit button
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **`PipelineUI.jsx`**:
+  - ReactFlow canvas
+  - Background grid
+  - Zoom controls
+  - Minimap with color-coded nodes
 
-### Advanced Configuration
+- **`PipelineResultsModal.jsx`**:
+  - Pipeline statistics (node count, edge count)
+  - DAG validation results
+  - Error handling
+  - User-friendly messages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Styling
 
-### Deployment
+All CSS files use:
+- CSS variables for theming
+- BEM-style naming conventions
+- Comprehensive comments explaining each style
+- Responsive design principles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Special Features
 
-### `npm run build` fails to minify
+#### Text Node with Variable Extraction
+The text node (`textNode.jsx`) includes:
+- Auto-resizing based on content
+- Variable extraction from `{{variableName}}` syntax
+- Dynamic handle generation for each variable
+- Real-time variable detection
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Minimap Customization
+The minimap displays nodes as:
+- Colored rectangles (based on node type)
+- White text abbreviations (e.g., "IN", "OUT", "LLM")
+- Better visual distinction than emojis
+
+#### History Management
+Complete undo/redo system with:
+- State snapshots after each change
+- History step tracking
+- UI buttons with disabled states
+
+## Installation & Setup
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# Build for production
+npm run build
+```
+
+## Usage
+
+1. **Add Nodes**: Drag node types from the toolbar to the canvas
+2. **Connect Nodes**: Drag from output handles to input handles
+3. **Configure Nodes**: Click nodes to edit their properties
+4. **Text Variables**: Use `{{variableName}}` in text nodes to create dynamic inputs
+5. **Theme Toggle**: Click the sun/moon icon to switch themes
+6. **Undo/Redo**: Use the arrow buttons to navigate history
+7. **Submit**: Click "Submit" to validate the pipeline and see statistics
+
+## API Integration
+
+The frontend connects to the backend API at `http://localhost:8000`:
+
+- **POST /pipelines/parse**: Submit pipeline for validation
+  - Sends: `{ nodes: [], edges: [] }`
+  - Receives: `{ num_nodes, num_edges, is_dag, status }`
+
+## Browser Support
+
+- Chrome (recommended)
+- Firefox
+- Safari
+- Edge
+
+Modern browsers with ES6+ support required.

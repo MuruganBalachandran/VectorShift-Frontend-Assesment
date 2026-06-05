@@ -63,46 +63,50 @@ const selector = (state) => ({
 // endregion
 
 
-// region Custom MiniMap node component with icons
+// region Custom MiniMap node component with colored backgrounds and white icons
 const MiniMapNodeWithIcon = ({ x, y, width, height, color, shapeRendering, style, onClick }) => {
-  // Get node type from the color to determine which icon to show
+  // Get icon text (letter) from color
   const getIconFromColor = (col) => {
     const colorIconMap = {
-      '#4CAF50': '📥',
-      '#F44336': '📤',
-      '#2196F3': '💬',
-      '#FF9800': '📝',
-      '#9C27B0': '📄',
-      '#795548': '💾',
-      '#00BCD4': '🔍',
-      '#E91E63': '🤖',
-      '#607D8B': '✉️',
+      '#4CAF50': 'IN',       // Input
+      '#F44336': 'OUT',      // Output
+      '#2196F3': 'LLM',      // LLM
+      '#FF9800': 'TXT',      // Text
+      '#9C27B0': 'PDF',      // PDF
+      '#795548': 'KB',       // Knowledge Base
+      '#00BCD4': 'WEB',      // Web Search
+      '#E91E63': 'TPL',      // Template
+      '#607D8B': 'EML',      // Email
     };
-    return colorIconMap[col] || '';
+    return colorIconMap[col] || 'N';
   };
 
   const icon = getIconFromColor(color);
 
   return (
     <g onClick={onClick}>
+      {/* Filled background rectangle with node color */}
       <rect
         x={x}
         y={y}
         width={width}
         height={height}
-        fill="transparent"
+        fill={color}
         stroke={color}
         strokeWidth="2"
         rx="3"
         shapeRendering={shapeRendering}
       />
+      {/* White text icon on top */}
       {icon && (
         <text
           x={x + width / 2}
           y={y + height / 2 + 1}
           textAnchor="middle"
           dominantBaseline="middle"
-          fontSize={Math.min(width, height) * 0.8}
+          fontSize={Math.min(width, height) * 0.4}
+          fontWeight="bold"
+          fill="white"
           style={{ userSelect: 'none', pointerEvents: 'none' }}
         >
           {icon}
