@@ -1,0 +1,32 @@
+/* baseNode.css - Base node styles */
+
+.base-node {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background-color: var(--node-bg);
+  border: 1.5px solid var(--node-border);
+  box-shadow: 0 2px 8px var(--node-shadow);
+  padding: 12px;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.base-node-header {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.base-node-icon {
+  opacity: 0.7;
+}
+
+.base-node-content {
+  flex: 1;
+  overflow: visible;
+}

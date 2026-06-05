@@ -1,0 +1,222 @@
+/* controlComponents.css - Form control components styles */
+
+/* Base Control Wrapper */
+.control-wrapper {
+  margin-bottom: 8px;
+}
+
+/* Labels */
+.control-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Text Input */
+.control-input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  box-sizing: border-box;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.control-input:focus {
+  border-color: var(--input-focus);
+}
+
+/* Select/Dropdown */
+.control-select {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  box-sizing: border-box;
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Textarea */
+.control-textarea {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  box-sizing: border-box;
+  font-size: 11px;
+  font-family: monospace;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.control-textarea:focus {
+  border-color: var(--input-focus);
+}
+
+/* Checkbox */
+.control-checkbox-wrapper {
+  margin-bottom: 8px;
+}
+
+.control-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.control-checkbox-label input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: var(--accent-primary);
+}
+
+/* Toggle */
+.control-toggle-wrapper {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.control-toggle-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.control-toggle-button {
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.control-toggle-button.on {
+  background-color: var(--success-border);
+}
+
+.control-toggle-button.off {
+  background-color: var(--border-secondary);
+}
+
+/* Multi-Select */
+.control-multiselect-wrapper {
+  margin-bottom: 8px;
+}
+
+.control-multiselect-options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.control-multiselect-option {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.control-multiselect-option input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: var(--accent-primary);
+}
+
+/* Color Picker */
+.control-color {
+  width: 100%;
+  height: 30px;
+  padding: 2px;
+  border-radius: 4px;
+  border: 1px solid var(--input-border);
+  cursor: pointer;
+  background-color: var(--input-bg);
+}
+
+/* Slider */
+.control-slider-wrapper {
+  margin-bottom: 8px;
+}
+
+.control-slider-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-bottom: 4px;
+  color: var(--text-secondary);
+}
+
+.control-slider-value {
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.control-slider {
+  width: 100%;
+  accent-color: var(--accent-primary);
+}
+
+/* Tag Input */
+.control-tags-wrapper {
+  margin-bottom: 8px;
+}
+
+.control-tags-input {
+  width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  box-sizing: border-box;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.control-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.control-tag {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.control-tag-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 0;
+  color: var(--text-secondary);
+}
+
+.control-tag-remove:hover {
+  color: var(--text-primary);
+}

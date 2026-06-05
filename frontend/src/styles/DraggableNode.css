@@ -1,0 +1,42 @@
+/* DraggableNode.css - Draggable node button styles */
+
+.draggable-node {
+  cursor: grab;
+  min-width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background-color: var(--node-bg);
+  border: 1px solid var(--node-border);
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px var(--node-shadow);
+}
+
+.draggable-node:active {
+  cursor: grabbing;
+}
+
+.draggable-node:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--accent-primary);
+}
+
+.draggable-node-icon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.draggable-node-label {
+  color: var(--text-primary);
+  font-size: 10px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.2;
+}

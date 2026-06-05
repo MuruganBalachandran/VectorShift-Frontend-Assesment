@@ -1,0 +1,154 @@
+/* Toolbar.css - Pipeline toolbar styles */
+
+.toolbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-primary);
+  gap: 24px;
+  min-height: 70px;
+  transition: background-color 0.3s ease;
+}
+
+/* Logo Section */
+.toolbar-logo {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 8px;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.toolbar-logo-title {
+  color: var(--accent-primary);
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.toolbar-logo-subtitle {
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Separator */
+.toolbar-separator {
+  width: 1px;
+  height: 50px;
+  background-color: var(--border-primary);
+  margin: 0 8px;
+}
+
+/* Node Buttons Container */
+.toolbar-nodes {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+/* Spacer */
+.toolbar-spacer {
+  flex: 1;
+}
+
+/* Controls Section */
+.toolbar-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Button Base Styles */
+.toolbar-button {
+  padding: 8px 12px;
+  border: 1px solid var(--border-tertiary);
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-primary);
+}
+
+.toolbar-button-icon {
+  background-color: var(--bg-secondary);
+}
+
+.toolbar-button-icon:hover:not(:disabled) {
+  background-color: var(--bg-tertiary);
+}
+
+.toolbar-button-icon:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Delete Selected Button */
+.toolbar-button-delete {
+  padding: 8px 12px;
+  border: 1px solid var(--border-tertiary);
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toolbar-button-delete:disabled,
+.toolbar-button-delete.disabled {
+  background-color: var(--bg-secondary);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.toolbar-button-delete:not(:disabled):not(.disabled) {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.toolbar-button-delete:not(:disabled):not(.disabled):hover {
+  background-color: #ff5252;
+}
+
+/* Submit Button */
+.toolbar-button-submit {
+  padding: 10px 20px;
+  background-color: var(--accent-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  margin-left: 12px;
+}
+
+.toolbar-button-submit:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Theme Toggle Button */
+.toolbar-theme-toggle {
+  padding: 8px 12px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-tertiary);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbar-theme-toggle:hover {
+  background-color: var(--bg-tertiary);
+  border-color: var(--accent-primary);
+}
