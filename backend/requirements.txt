@@ -1,0 +1,15 @@
+# FastAPI Framework
+fastapi==0.104.1
+
+# ASGI Server
+uvicorn[standard]==0.24.0
+
+# Optional: For production deployment
+# gunicorn==21.2.0
+
+# Optional: For testing
+# pytest==7.4.3
+# httpx==0.25.1
+
+# Optional: For type checking
+# mypy==1.7.0

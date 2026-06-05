@@ -161,7 +161,7 @@ The frontend will automatically open in your default browser.
 cd backend
 
 # Install dependencies
-pip install fastapi uvicorn
+pip install -r requirements.txt
 
 # Start API server (runs on http://localhost:8000)
 uvicorn main:app --reload
@@ -373,7 +373,7 @@ Built with ❤️ using React, FastAPI, and modern web technologies.
 **Quick Start:** 
 ```bash
 # Terminal 1 - Backend
-cd backend && pip install fastapi uvicorn && uvicorn main:app --reload
+cd backend && pip install -r requirements.txt && uvicorn main:app --reload
 
 # Terminal 2 - Frontend  
 cd frontend && npm install && npm start

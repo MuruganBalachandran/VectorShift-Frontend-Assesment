@@ -292,6 +292,12 @@ The code is organized with region markers for easy navigation:
 
 ### Install Dependencies
 
+**Option 1: Using requirements.txt (Recommended)**
+```bash
+pip install -r requirements.txt
+```
+
+**Option 2: Manual installation**
 ```bash
 pip install fastapi uvicorn
 ```
